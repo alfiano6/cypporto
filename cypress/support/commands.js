@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import './commands';
+
+Cypress.Commands.add('LoginWithPageSession', (email, pwd) => {
+    cy.visit('https://dev-website-admin.tabungselalu.id/')
+    cy.get("#email").type(email)
+    cy.get("#password").type(pwd)
+    cy.get("button[type='submit']").click()
+    cy.get("span[class='ant-typography css-1e5wuiv']").should('include.text', 'Admin')
+    })
